@@ -1,0 +1,14 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.7",
+  "package": "de.amin.freecam.mixins",
+  "refmap": "mixins.freecam.refmap.json",
+  "mixins": [
+    "MixinEntity",
+    "MixinEntityPlayerSP",
+    "MixinNetworkManager",
+    "MixinPlayerControllerMP",
+    "MixinRenderGlobal",
+    "MixinNetHandlerPlayClient"
+  ]
+}
