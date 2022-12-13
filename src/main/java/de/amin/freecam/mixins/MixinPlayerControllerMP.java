@@ -4,10 +4,13 @@ import de.amin.freecam.FreecamMod;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerControllerMP.class)
 public class MixinPlayerControllerMP {
@@ -20,6 +23,28 @@ public class MixinPlayerControllerMP {
     public void onAttackEntity(EntityPlayer p_attackEntity_1_, Entity p_attackEntity_2_, CallbackInfo ci)  {
         if(FreecamMod.isEnabled) {
             ci.cancel();
+        }
+    }
+
+    @Inject(
+            at = @At("HEAD"),
+            method = "onPlayerDamageBlock",
+            cancellable = true
+    )
+    public void onAttackBlock(BlockPos posBlock, EnumFacing directionFacing, CallbackInfoReturnable<Boolean> cir)  {
+        if(FreecamMod.isEnabled) {
+            cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(
+            at = @At("HEAD"),
+            method = "clickBlock",
+            cancellable = true
+    )
+    public void onClickBlock(BlockPos posBlock, EnumFacing directionFacing, CallbackInfoReturnable<Boolean> cir)  {
+        if(FreecamMod.isEnabled) {
+            cir.setReturnValue(false);
         }
     }
 

@@ -6,9 +6,9 @@
   "mixins": [
     "MixinEntity",
     "MixinEntityPlayerSP",
+    "MixinNetHandlerPlayClient",
     "MixinNetworkManager",
     "MixinPlayerControllerMP",
-    "MixinRenderGlobal",
-    "MixinNetHandlerPlayClient"
+    "MixinEntityRenderer"
   ]
 }

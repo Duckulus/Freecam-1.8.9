@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.Packet;
+import net.minecraft.world.WorldSettings;
 
 import java.util.UUID;
 
@@ -38,7 +39,15 @@ public class Freecam extends EntityPlayerSP {
     }
 
     @Override
+    public void setPositionAndUpdate(double x, double y, double z) {
+        super.setPositionAndUpdate(x, y, z);
+        setGameType(WorldSettings.GameType.SPECTATOR);
+        noClip = false;
+    }
+
+    @Override
     public void onUpdate() {
+        System.out.println("test");
         super.onUpdate();
     }
 }

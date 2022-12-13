@@ -51,6 +51,7 @@ public class FreecamMod {
         freecam = new Freecam();
         freecam.spawn();
         freecam.setPositionAndRotation(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch);
+        freecam.inventory.mainInventory = Wrapper.player().inventory.mainInventory;
         freecam.movementInput = new MovementInputFromOptions(mc.gameSettings);
         mc.thePlayer.movementInput = new MovementInput();
         freecam.setGameType(WorldSettings.GameType.SPECTATOR);
