@@ -39,15 +39,10 @@ public class Freecam extends EntityPlayerSP {
     }
 
     @Override
-    public void setPositionAndUpdate(double x, double y, double z) {
-        super.setPositionAndUpdate(x, y, z);
-        setGameType(WorldSettings.GameType.SPECTATOR);
-        noClip = false;
-    }
-
-    @Override
     public void onUpdate() {
-        System.out.println("test");
         super.onUpdate();
+        noClip = true;
+        this.inventory.currentItem = Wrapper.player().inventory.currentItem;
+        this.setHealth(Wrapper.player().getHealth());
     }
 }

@@ -3,7 +3,6 @@ package de.amin.freecam;
 import de.amin.freecam.commands.CommandHandler;
 import de.amin.freecam.commands.impl.FreeCamCommand;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MovementInput;
 import net.minecraft.util.MovementInputFromOptions;
 import net.minecraft.world.WorldSettings;
@@ -56,18 +55,20 @@ public class FreecamMod {
         mc.thePlayer.movementInput = new MovementInput();
         freecam.setGameType(WorldSettings.GameType.SPECTATOR);
         mc.setRenderViewEntity(freecam);
+        Wrapper.mc().getRenderManager().livingPlayer = freecam;
+
         System.out.println("Freecam on");
-        Wrapper.sendMessage("Freecam enabled");
+        Wrapper.sendActionbar("Freecam enabled", 30);
     }
 
     public void disableFreecam() {
         isEnabled = false;
-        mc.thePlayer.noClip = false;
         freecam.despawn();
         mc.thePlayer.movementInput = freecam.movementInput;
         mc.setRenderViewEntity(mc.thePlayer);
+        Wrapper.mc().getRenderManager().livingPlayer = Wrapper.player();
         System.out.println("Freecam off");
-        Wrapper.sendMessage("Freecam disabled");
+        Wrapper.sendActionbar("Freecam disabled", 30);
     }
 
     public static FreecamMod getInstance() {

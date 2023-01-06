@@ -3,12 +3,15 @@
   "minVersion": "0.7",
   "package": "de.amin.freecam.mixins",
   "refmap": "mixins.freecam.refmap.json",
-  "mixins": [
+  "client": [
+    "MixinRenderGlobal",
     "MixinEntity",
+    "MixinEntityLivingBase",
+    "MixinEntityPlayer",
     "MixinEntityPlayerSP",
+    "MixinEntityRenderer",
     "MixinNetHandlerPlayClient",
     "MixinNetworkManager",
-    "MixinPlayerControllerMP",
-    "MixinEntityRenderer"
+    "MixinPlayerControllerMP"
   ]
 }
