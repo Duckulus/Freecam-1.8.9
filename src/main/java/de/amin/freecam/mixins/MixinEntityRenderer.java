@@ -10,6 +10,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(EntityRenderer.class)
 public class MixinEntityRenderer {
 
+    /*
+     * Do not draw block outlines while in freecam to indicate that you are not able to place blocks
+     */
     @Inject(
             at = @At("HEAD"),
             method = "isDrawBlockOutline",

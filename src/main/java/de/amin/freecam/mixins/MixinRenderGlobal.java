@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(RenderGlobal.class)
 public class MixinRenderGlobal {
 
+    /*
+    This mixin is needed to render the player while in Freecam
+     */
     @Redirect(
             at = @At(
                     value = "INVOKE",

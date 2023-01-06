@@ -2,13 +2,19 @@ package de.amin.freecam;
 
 import de.amin.freecam.commands.CommandHandler;
 import de.amin.freecam.commands.impl.FreeCamCommand;
+import de.amin.freecam.events.RenderHand;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.MovementInput;
 import net.minecraft.util.MovementInputFromOptions;
 import net.minecraft.world.WorldSettings;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.input.Keyboard;
 
 @Mod(modid = FreecamMod.MOD_ID, name = FreecamMod.MOD_NAME, version = FreecamMod.MOD_VERSION, clientSideOnly = true)
 public class FreecamMod {
@@ -17,6 +23,8 @@ public class FreecamMod {
     public static boolean isEnabled = false;
     public CommandHandler commandHandler;
     public Freecam freecam;
+
+    KeyBinding freecamBinding = new KeyBinding("Toggle Freecam", Keyboard.KEY_X, "freecam");
 
     public static final String MOD_NAME = "Freecam";
     public static final String MOD_ID = "freecam";
@@ -27,14 +35,21 @@ public class FreecamMod {
     private static FreecamMod instance;
 
     @Mod.EventHandler
-    public void onPreInit(FMLPreInitializationEvent event) {
-    }
-
-    @Mod.EventHandler
     public void onInit(FMLInitializationEvent event) {
         mc = Minecraft.getMinecraft();
         commandHandler = new CommandHandler();
         commandHandler.registerCommand("freecam", new FreeCamCommand());
+        MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new RenderHand());
+
+        ClientRegistry.registerKeyBinding(freecamBinding);
+    }
+
+    @SubscribeEvent
+    public void onEvent(InputEvent.KeyInputEvent event) {
+        if (freecamBinding.isPressed()) {
+            toggleFreecam();
+        }
     }
 
     public void toggleFreecam() {
@@ -55,7 +70,11 @@ public class FreecamMod {
         mc.thePlayer.movementInput = new MovementInput();
         freecam.setGameType(WorldSettings.GameType.SPECTATOR);
         mc.setRenderViewEntity(freecam);
-        Wrapper.mc().getRenderManager().livingPlayer = freecam;
+        mc.gameSettings.thirdPersonView = 0;
+        Wrapper.player().moveForward = 0;
+        Wrapper.player().moveStrafing = 0;
+        Wrapper.player().setJumping(false);
+
 
         System.out.println("Freecam on");
         Wrapper.sendActionbar("Freecam enabled", 30);

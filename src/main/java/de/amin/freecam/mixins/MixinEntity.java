@@ -15,6 +15,9 @@ public abstract class MixinEntity {
 
     @Shadow public abstract boolean equals(Object p_equals_1_);
 
+    /*
+     This mixin is needed to rotate the freecam
+     */
     @Inject(
             at = @At("HEAD"),
             method = "setAngles",

@@ -3,7 +3,7 @@ package de.amin.freecam.mixins;
 import de.amin.freecam.FreecamMod;
 import de.amin.freecam.Wrapper;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EntityPlayerSP.class)
-public abstract class MixinEntityPlayerSP extends Entity {
+public abstract class MixinEntityPlayerSP extends EntityLivingBase {
     public MixinEntityPlayerSP(World worldIn) {
         super(worldIn);
     }
@@ -30,17 +30,12 @@ public abstract class MixinEntityPlayerSP extends Entity {
         if (FreecamMod.isEnabled && this.equals(FreecamMod.getInstance().freecam)) cir.setReturnValue(true);
     }
 
-    /**
-     * This is mixin is needed to keep sending Player Packets when the viewEntity is set to FreeCam
+    /*
+     This is mixin is needed to keep sending Player Packets when the viewEntity is set to FreeCam
      */
     @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/entity/EntityPlayerSP;isCurrentViewEntity()Z"), method = "onUpdateWalkingPlayer")
     public boolean onIsViewEntity(EntityPlayerSP instance) {
         return this.equals(Wrapper.player());
-    }
-
-    @Inject(method = "onUpdate", at = @At("HEAD"))
-    public void onUpdate(CallbackInfo ci) {
-//        System.out.println("SP: " + this);
     }
 
 }
