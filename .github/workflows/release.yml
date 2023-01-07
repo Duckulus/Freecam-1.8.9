@@ -28,5 +28,5 @@ jobs:
       - name: Upload jar
         uses: actions/upload-artifact@v1
         with:
-          name: Artifacts
-          path: build/libs/*-all.jar
+          name: Freecam
+          path: build/libs/
