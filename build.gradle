@@ -29,7 +29,7 @@ repositories {
 dependencies {
     implementation 'org.spongepowered:mixin:0.7.11-SNAPSHOT'
     annotationProcessor "org.spongepowered:mixin:0.7.11-SNAPSHOT"
-    compileOnly files('lib/lm_api_mc1.8.9.jar')
+    provided files('lib/lm_api_mc1.8.9.jar')
 }
 
 mixin {
@@ -62,7 +62,7 @@ processResources {
     inputs.property 'description', mod_description
 
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
+        include('mcmod.info', 'addon.json')
 
         expand(
                 'version': project.version,
@@ -75,7 +75,7 @@ processResources {
     }
 
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude('mcmod.info', 'addon.json')
     }
 
     rename '(.+_at.cfg)', 'META-INF/$1'

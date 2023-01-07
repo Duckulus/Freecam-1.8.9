@@ -2,21 +2,16 @@ package de.amin.freecam;
 
 import de.amin.freecam.commands.CommandHandler;
 import de.amin.freecam.commands.impl.FreeCamCommand;
-import de.amin.freecam.events.RenderHand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.MovementInput;
 import net.minecraft.util.MovementInputFromOptions;
 import net.minecraft.world.WorldSettings;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
-@Mod(modid = FreecamMod.MOD_ID, name = FreecamMod.MOD_NAME, version = FreecamMod.MOD_VERSION, clientSideOnly = true)
 public class FreecamMod {
 
     public static Minecraft mc;
@@ -31,16 +26,12 @@ public class FreecamMod {
     public static final String MOD_VERSION = "1.0";
 
 
-    @Mod.Instance(FreecamMod.MOD_ID)
-    private static FreecamMod instance;
+    private static final FreecamMod instance = new FreecamMod();
 
-    @Mod.EventHandler
-    public void onInit(FMLInitializationEvent event) {
+    public void init() {
         mc = Minecraft.getMinecraft();
         commandHandler = new CommandHandler();
         commandHandler.registerCommand("freecam", new FreeCamCommand());
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new RenderHand());
 
         ClientRegistry.registerKeyBinding(freecamBinding);
     }
