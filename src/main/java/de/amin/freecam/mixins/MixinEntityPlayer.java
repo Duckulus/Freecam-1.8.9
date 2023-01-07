@@ -20,7 +20,7 @@ public abstract class MixinEntityPlayer extends Entity {
             method = "onUpdate"
     )
     public boolean onUpdate(EntityPlayer instance) {
-        return FreecamMod.isEnabled && instance.equals(FreecamMod.getInstance().freecam);
+        return instance.isSpectator() || FreecamMod.isEnabled && instance.equals(FreecamMod.getInstance().freecam);
     }
 
 
