@@ -32,7 +32,7 @@ public class MixinEntityRenderer {
             cancellable = true
     )
     public void onRenderHand(int pass, float partialTicks, long finishTimeNano, CallbackInfo ci) {
-        if(FreecamMod.isEnabled) {
+        if(FreecamMod.isEnabled && !FreecamMod.getInstance().getConfig().isShowHand()) {
             ci.cancel();
         }
     }
