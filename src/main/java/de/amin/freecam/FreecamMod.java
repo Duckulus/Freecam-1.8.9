@@ -18,6 +18,7 @@ public class FreecamMod {
     public static boolean isEnabled = false;
     public CommandHandler commandHandler;
     public Freecam freecam;
+    private final FreecamConfig config = new FreecamConfig();
 
     KeyBinding freecamBinding = new KeyBinding("Toggle Freecam", Keyboard.KEY_X, "freecam");
 
@@ -85,4 +86,7 @@ public class FreecamMod {
         return instance;
     }
 
+    public FreecamConfig getConfig() {
+        return config;
+    }
 }

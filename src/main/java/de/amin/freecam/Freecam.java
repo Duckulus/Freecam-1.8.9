@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.Packet;
-import net.minecraft.world.WorldSettings;
 
 import java.util.UUID;
 
@@ -41,7 +40,7 @@ public class Freecam extends EntityPlayerSP {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        noClip = true;
+        this.capabilities.setFlySpeed(FreecamMod.getInstance().getConfig().getFlySpeed());
         this.inventory.currentItem = Wrapper.player().inventory.currentItem;
         this.setHealth(Wrapper.player().getHealth());
     }
