@@ -1,5 +1,5 @@
-import de.amin.freecam.FreecamMod;
-import de.amin.freecam.events.RenderHand;
+package de.amin.freecam;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -11,7 +11,6 @@ public class FreecamForgeMod {
     public void onInit(FMLInitializationEvent event) {
         FreecamMod.getInstance().init();
         MinecraftForge.EVENT_BUS.register(FreecamMod.getInstance());
-        MinecraftForge.EVENT_BUS.register(new RenderHand());
     }
 
 }
