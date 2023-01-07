@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Minecraft Client" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="corretto-1.8" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="MAIN_CLASS_NAME" value="GradleStart" />
+    <module name="Freecam.main" />
+    <option name="PROGRAM_PARAMETERS" value="--tweakClass &quot;org.spongepowered.asm.launch.MixinTweaker&quot; --mixin &quot;mixins.freecam.json" />
+    <option name="VM_PARAMETERS" value="-javaagent:&quot;${UserProfile}\.gradle\caches\modules-2\files-2.1\org.spongepowered\mixin\0.7.11-SNAPSHOT\7a670207bdb97db418118ad1e9bb42424ff3776d\mixin-0.7.11-SNAPSHOT.jar&quot; -Dfml.coreMods.load=net.labymod.core.asm.LabyModCoreMod" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/run" />
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Run" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
