@@ -24,14 +24,11 @@ public class MixinEntityRenderer {
     }
 
     @Inject(
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraftforge/client/ForgeHooksClient;renderFirstPersonHand(Lnet/minecraft/client/renderer/RenderGlobal;FI)Z"
-            ),
-            method = "renderWorldPass",
+            at = @At("HEAD"),
+            method = "renderHand",
             cancellable = true
     )
-    public void onRenderHand(int pass, float partialTicks, long finishTimeNano, CallbackInfo ci) {
+    public void onRenderHand(float partialTicks, int xOffset, CallbackInfo ci) {
         if(FreecamMod.isEnabled && !FreecamMod.getInstance().getConfig().isShowHand()) {
             ci.cancel();
         }
