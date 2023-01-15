@@ -77,6 +77,7 @@ public class FreecamMod {
         freecam.despawn();
         mc.thePlayer.movementInput = freecam.movementInput;
         mc.setRenderViewEntity(mc.thePlayer);
+        mc.renderGlobal.loadRenderers(); // reloads chunks to render players surroundings
         Wrapper.mc().getRenderManager().livingPlayer = Wrapper.player();
         System.out.println("Freecam off");
         Wrapper.sendActionbar("Freecam disabled", 30);
