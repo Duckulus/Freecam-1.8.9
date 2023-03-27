@@ -1,0 +1,22 @@
+{
+  "freecam": {
+    "settings": {
+      "name": "Freecam",
+      "enabled": {
+        "name": "Enabled"
+      },
+      "noClip": {
+        "name": "NoClip",
+        "description": "This settings sets if you can clip through blocks like in spectator mode"
+      },
+      "showHand": {
+        "name": "Show Hand",
+        "description": "This setting sets if you can see your hand while in Freecam"
+      },
+      "flySpeed": {
+        "name": "Fly Speed",
+        "description": "This setting sets your flight speed in Freecam"
+      }
+    }
+  }
+}
