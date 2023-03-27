@@ -39,3 +39,6 @@ bin/
 .idea/
 run
 build
+
+secrets.properties
+.assetsroot
